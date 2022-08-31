@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            screens: {
+       'xs':'370px',         
+      'sm': '460px',
+
+      'md': '750px',
+
+      'lg': '1080px',
+
+      'xl': '1280px',
+
+            fontFamily:{
+                'pfont':['Inter,sans-serif'],
+                'serif':['serif']
+            },
+            extend: {
+                dropShadow: {
+        '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
+        '4xl': [
+            '0 35px 35px rgba(0, 0, 0, 0.25)',
+            '0 45px 65px rgba(0, 0, 0, 0.15)'
+        ]
+      },
+          }
+        }
+      </script>
+    <style>
+        select {
+    font-size: .9rem;
+    padding: 2px 5px;
+}
+    </style>
+</head>
+<body>
+		<nav class="fixed top-0 left-0 right-0 bg-white shadow-lg py-1">
+			<div class="px-[80px] mx-auto">
+				<div class="flex justify-between">
+					<div class="flex space-x-7">
+						<div>
+							<!-- Website Logo -->
+							<a href="#" class="flex items-center py-4 px-2">
+								<img src="assets/shopify-logo1.png" alt="Logo" class="w-[130px]">
+							</a>
+						</div>
+						<!-- Primary Navbar items -->
+						<div class="hidden md:flex items-center space-x-1">
+							<div @click.away="open = false" class="relative" x-data="{ open: false }">
+                                <button @click="open = !open" class="flex flex-row items-center w-full px-2 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg  w-[450px]  w-[450px] md:w-auto md:inline md:mt-0 md:ml-4  ">
+                                    <span class="text-[16px]">Start</span>
+                                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                    <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                                        <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" > Start your business</label>
+                                      <a class="block px-4 py-2 mt-2 text-sm hover:text-gray-500 font-semibold  w-[450px] md:mt-0 " href="#">Branding</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm hover:text-gray-500 font-semibold  w-[450px] md:mt-0 " href="#">Online presence</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm hover:text-gray-500 font-semibold  w-[450px] md:mt-0 " href="#">Store set up</a>
+                                    </div>
+                                </div>
+                            </div>
+							<div @click.away="open = false" class="relative" x-data="{ open: false }">
+                                <button @click="open = !open" class="flex flex-row items-center w-full py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg w-[450px] w-[450px] md:w-auto md:inline md:mt-0 md:ml-4 ">
+                                    <span class="text-[16px]">Sell</span>
+                                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                    <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                                    <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" >Sell everywhere</label>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">Online store</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">Point of Sale</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">Buy Button</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">Checkout</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">Sales channels</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">Custom storefront tools</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg  w-[450px] md:mt-0 hover:text-gray-500 " href="#">International commerce</a>
+                                    </div>
+                                </div>
+                            </div>
+							<div @click.away="open = false" class="relative" x-data="{ open: false }">
+                                <button @click="open = !open" class="flex flex-row items-center w-full  py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg  w-[450px]  w-[450px] md:w-auto md:inline md:mt-0 md:ml-4 ">
+                                    <span class="text-[16px]">Market</span>
+                                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                    <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                                        <label class=" ml-1 text-center font-[600 w-[450px]] border-b-2 pb-1 border-white-500" >Market your business</label>
+                                      <a class="block px-4 py-2 mt-2 text-sm  rounded-lg w-[450px] md:mt-0 hover:text-gray-500 " href="#">Email marketing</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm  rounded-lg w-[450px] md:mt-0 hover:text-gray-500 " href="#">Marketing automation</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm  rounded-lg w-[450px] md:mt-0 hover:text-gray-500 " href="#">Customer groups</a>
+                                      <a class="block px-4 py-2 mt-2 text-sm  rounded-lg w-[450px] md:mt-0 hover:text-gray-500 " href="#">Business chat </a>
+                                      <a class="block px-4 py-2 mt-2 text-sm  rounded-lg w-[450px] md:mt-0 hover:text-gray-500 " href="#">Facebook Ads </a>
+                                    </div>
+                                </div>
+                            </div>
+							<div @click.away="open = false" class="relative" x-data="{ open: false }">
+                                <button @click="open = !open" class="flex flex-row items-center w-full py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg  w-[450px] md:w-auto md:inline md:mt-0 md:ml-4 ">
+                                    <span class="text-[16px]">Manage</span>
+                                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                    <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                                        <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" >Manage everything</label>
+                                      <a class="block px-4 py-2 mt-2 text-sm rounded-lg md:mt-0 hover:text-gray-500" href="#">Ecommerce automation</a>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+					<!-- Secondary Navbar items -->
+					<div class="hidden md:flex items-center space-x-3 ">
+                        <a href="" class="py-2 px-2 font-medium text-[16px] hover:text-gray-500 transition duration-300">Pricing</a>
+                        <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="flex flex-row items-center w-full py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg  w-[450px]  w-[450px] md:w-auto md:inline md:mt-0 md:ml-4 ">
+                                <span class="text-[16px]">  Learn</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                                    <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" >Help Center</label>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Blog</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Business Courses</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Guides</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Shopify Community</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Free tools</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Podacasts</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Business encyclopedia</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Community Events</a>
+                                  <a class="block px-4 py-2 mt-2 text-sm rounded-lg w-[450px] md:mt-0 hover:text-gray-500" href="#">Research</a>
+                                </div>
+                            </div>
+                        </div>
+						<a href="" class="py-2 px-2  font-medium  text-[16px] hover:text-gray-500 transition duration-300">Log in</a>
+						<a href="" class="py-3 pl-8  font-[600 w-[490px]] md:text-[15px] md:w-[160px] sm:w-[140px] text-white bg-[#008060] rounded hover:bg-[#004C3F] transition duration-300">Try for free</a>
+					</div>
+					<!-- Mobile menu button -->
+					<div class="md:hidden flex items-center">
+                        <a href="" class="py-2 px-2 ml-5 font-medium text-[18px] hover:text-gray-500 transition duration-300">Log in</a>
+					    <button class="outline-none mobile-menu-button">
+						<svg class=" w-6 h-6 text-gray-500 hover:text-green-500 "
+							x-show="!showMenu"
+							fill="none"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path d="M4 6h16M4 12h16M4 18h16"></path>
+						</svg>
+					    </button>
+					</div>
+				</div>
+			</div>
+			<!-- mobile menu -->
+			<div class="hidden mobile-menu mx-5">
+				<div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex flex-row items-center w-full px-2 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white md:w-auto md:inline md:mt-0 md:ml-4 focus:text-gray-900 hover:text-[#777777] focus:outline-none focus:shadow-outline">
+                        <span class="text-[16px]">Start</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" > Start your business</label>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg md:mt-0 hover:text-gray-500 " href="#">Branding</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg md:mt-0 hover:text-gray-500 " href="#">Online presence</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg md:mt-0 hover:text-gray-500 " href="#">Store set up</a>
+                        </div>
+                    </div>
+                </div>
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex flex-row items-center w-full py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white  md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:text-[#777777] focus:outline-none focus:shadow-outline">
+                        <span class="text-[16px]">Sell</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                        <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" >Sell everywhere</label>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Online store</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Point of Sale</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Buy Button</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Checkout</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Sales channels</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Custom storefront tools</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">International commerce</a>
+                        </div>
+                    </div>
+                </div>
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex flex-row items-center w-full  py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white   md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:text-[#777777] focus:outline-none focus:shadow-outline">
+                        <span class="text-[16px]">Market</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <label class=" ml-1 text-center font-[600 w-[450px]] border-b-2 pb-1 border-white-500" >Market your business</label>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Email marketing</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Marketing automation</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Customer groups</a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Business chat </a>
+                          <a class="block px-4 py-2 mt-2 text-sm  rounded-lg  md:mt-0 hover:text-gray-500 " href="#">Facebook Ads </a>
+                        </div>
+                    </div>
+                </div>
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex flex-row items-center w-full py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white  md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:text-[#777777]  focus:outline-none focus:shadow-outline">
+                        <span class="text-[16px]">Manage</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <label class=" ml-4 text-center font-bold border-b-2 pb-1 border-white-500" >Manage everything</label>
+                          <a class=" block px-4 py-2 mt-2 text-sm  rounded-lg w-[450px] dark-mode:focus:bg-gray-600 w-[450px] dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:text-[#777777] focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Ecommerce automation</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+
+		</nav>
+<!-- nav section ends here -->
+
+<!-- section 1 -->
+<div class="flex flex-col lg:flex-row items-center md:items-start lg:items-center px-[27.5px] sm:px-[35px] md:px-[60px] lg:px-[90px] py-40 pb-8 sm:py-[80px]">
+    <div class="flex-[.5]  md:w-[600px] lg:w-fit">
+        <h1 class="text-[2rem] lg:text-[2.9rem] font-[900]  xs:w-[350px] lg:w-[500px] mb-7 text-[#004C3F] ">The easiest way to sell online in India</h1>
+        <p class="text-[20px] text-gray-500 pb-8  ">Try one of the most powerful platforms on the market for free. No technical knowledge needed.</p>
+        <div class="flex flex-col sm:flex-row  mx-auto  gap-3 mb-6">
+            <input class="mx-auto  text-[17px] w-[98%] sm:w-[75%]  md:w-[420px] border-[1px] border-black rounded-[4px] px-4 py-4 sm:py-3" type="text" placeholder="Enter your email address">
+                    <a class="mx-auto w-[98%] sm:w-max bg-[#008060]  text-white py-[15px] sm:py-[11px] px-7 rounded-md font-[500]"> Try for free</a>
+        </div>
+        <p class="py-4 text-[12px]  w-[550px]">Try Shopify free for 14 days, no credit card required. By entering your email, you agree to receive marketing emails from Shopify.        </p>
+    </div >
+    <div class="flex[.5]">
+        <img class=" lg:pl-[70px]" src="assets/WechatIMG48.png" alt="">
+    </div>
+</div>
+<!-- section 2 -->
+<div class=" px-[27.5px] sm:px-[35px] md:px-[60px] lg:px-[90px] py-[60px] sm:py-[90px] bg-[#004C3F]">
+    <div class="flex flex-col lg:flex-row lg:justify-between py-16">
+        <div class="py-5 ">
+            <h1 class="text-[40px] text-white py-2">Bring your business online</h1>
+            <p class="text-white text-[17px]">Create an ecommerce website backed by powerful tools that help you find customers, drive sales, and manage your day-to-day.</p>
+        </div>
+        <div class="items-center mt-0 lg:mt-20">
+            <a class="text-white font-[600] " href="">Explore more examples →</a>
+        </div>
+    </div>
+    <div class="flex flex-wrap justify-between ">
+        <div class="p-[8px] w-[50%] sm:w-[1/6] md:w-1/4 lg:w-1/5 p">
+            <img class="mb-2 " src="assets/card-1.jpg" alt="">
+            <a class="text-white font-[600]" href=""> FOOD & DRINK</a><br>
+            <a class="text-white font-[600] " href=""> Blue Tokai</a>
+        </div>
+        <div class="p-[8px] w-[50%] sm:w-[1/6] md:w-1/4 lg:w-1/5">
+            <img class="mb-2 " src="assets/card-2.jpg" alt="">
+            <a class="text-white font-[600] " href="">JEWELRY</a><br>
+            <a class="text-white font-[600] " href="">Quirksmith</a>
+        </div>
+        <div class="p-[8px] w-[50%] sm:w-[1/6] md:w-1/4 lg:w-1/5">
+            <img class="mb-2 " src="assets/card-3.jpg" alt="">
+            <a class="text-white font-[600] " href="">ELECTRONICS</a><br>
+            <a class="text-white font-[600] " href="">Crossbeats</a>
+
+        </div>
+        <div class="p-[8px] w-[50%] sm:w-[1/6] md:w-1/4 lg:w-1/5">
+            <img class="mb-2 " src="assets/card-4.jpg" alt="">
+            <a class="text-white font-[600] " href="">BEAUTY</a><br>
+            <a class="text-white font-[600] " href="">Mcaffeine</a>
+
+        </div>
+        <div class="p-[8px] hidden lg:block w-1/4 lg:w-1/5">
+            <img class="mb-2 " src="assets/card-5.jpg" alt="">
+            <a class="text-white font-[600] " href="">FASHION</a> <br>
+            <a class="text-white font-[600] " href="">Bunaai</a>
+
+        </div>
+    </div>
+    <div>
+        <h1 class="text-white pt-40 py-5 text-[2.2rem]">Take the best path forward</h1>
+        <div class=" flex lg:justify-between flex-wrap gap-5 lg:gap-0">
+            <div class="p-[10px] sm:w-[70%] md:w-[48%] lg:w-1/4">
+                <img class="w-[40px] " src="assets/icon1.jpg" alt="">
+                <h1 class="text-white py-5 text-xl font-[700]">Start an online business</h1>
+                <p class="text-white text-[17px] w-[290px]">Create a business, whether you’ve got a fresh idea or are looking for a new way to make money.</p>
+            </div>
+            <div class="p-[10px] sm:w-[70%] md:w-[48%] lg:w-1/4">
+                <img class="w-[40px] " src="assets/icon2.jpg" alt="">
+                <h1 class="text-white py-5 text-xl font-[700]">Move your business online</h1>
+                <p class="text-white text-[17px] w-[290px]">Turn your retail store into an online store and keep serving customers without missing a beat.</p>
+            </div>
+            <div class="p-[10px] sm:w-[70%] md:w-[48%] lg:w-1/4">
+                <img class="w-[40px]" src="assets/icon3.jpg" alt="">
+                <h1 class="text-white py-5 text-xl font-[700]">Switch to Shopify</h1>
+                <p class="text-white text-[17px] w-[290px]">Bring your business to Shopify, no matter which ecommerce platform you’re currently using.</p>
+            </div>
+            <div class="p-[10px] sm:w-[70%] md:w-[48%] lg:w-1/4">
+                <img class="w-[40px] " src="assets/icon4.jpg" alt="">
+                <h1 class="text-white py-5 text-xl font-[700]">Hire a Shopify expert</h1>
+                <p class="text-white text-[17px] w-[290px]">Get set up with the help of a trusted freelancer or agency from the Shopify Experts Marketplace</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- section-3 -->
+<div class="lg:px-[90px] py-20">
+    
+        <h1 class="text-center text-[2.5rem] font-[400]">With you wherever you'r going</h1>
+        <p class="text-center lg:text-[22px] py-4 text-gray-500" >One platform with all the ecommerce and point of sale features <br> you need to start, run, and grow your business.</p>
+    
+    <!-- 1st part -->
+    <div class="flex flex-col lg:flex-row  lg:justify-between px-10 py-20">
+        <!-- left col -->
+        <div class="w-[70%] ">
+            <video src="assets/sell-animation-desktop-1b186d853b04bce6dbc12bb63bd5bc4bc1ff60cd1a06fd12f85261c8acc66d0a.webm" autoplay></video>
+            </div>
+        <!-- right col -->
+        <div class=" pl-5 mt-40 w-[40%]">
+            <h1 class="text-[2rem] lg:text-[1.2rem]">Sell everywhere</h1>
+            <p class="text-gray-500 text-[17px] sm:w-[100%] py-4">Use one platform to sell products to anyone, anywherein person with Point of Sale and online through your website, social media, and online marketplaces.</p>
+            <a href="" class="text-[#008060] text-[18px]">Explore ways to sell →</a>
+        </div>
+    </div>
+    <!-- 2nd part -->
+    <div class="flex flex-col lg:flex-row  lg:justify-between items-center py-20">
+        <div class="px-16">
+            <h1 class=" text-[1.8rem]">
+                Market your business
+            </h1>
+            <p  class="text-gray-500 text-[17px] py-4">Take the guesswork out of marketing with built-in tools that help you create, execute, and analyze digital marketing campaigns.</p>
+            <a href="" class="text-[#008060] text-[18px] ">Explore how to market your business →</a>
+        </div>
+        <div class="pl-10">
+            <img class=" " src="assets/p2.webp" alt="">
+        </div>
+    </div>
+    <!-- 3rd part -->
+    <div class="flex flex-col lg:flex-row items-center gap-5 lg:justify-between px-10 ">
+        <div class="lg:w-[50%]">
+            <img src="assets/graph1.png" alt="">
+        </div>
+        <div class="lg:mt-20">
+            <h1 class="text-[2rem]">Manage everything</h1>
+            <p class="text-gray-500 text-[17px] py-4">Gain the insights you need to grow—use a single dashboard to manage orders, shipping, and payments anywhere you go.</p>
+            <a href="" class="text-[#008060] text-[18px]">Explore how to manage your business →</a>
+        </div>
+    </div>
+</div>
+
+<!-- section-4 -->
+    <div class="bg-[#F3FCF4]">
+        <h1 class="px-24 pt-28 text-[2rem]">Explore more from Shopify in India</h1>
+        <div class="flex flex-col-reverse lg:flex-row justify-between px-24 py-10 pb-20">
+            <div class="bg-white p-5 lg:w-[70%] ">
+                <h1 class=" text-[1rem]  font-bold pb-5">START</h1>
+                <h1 class="text-[1.7rem] ">Launch your store with the help of a Shopify Expert</h1>
+                <p class="text-gray-600 text-[18px]  mt-10">Find hundreds of experts from India ready to help you get your store up and running, from choosing a theme to building a fully customized site.</p>
+                <a href="" class="text-[#008060] text-[18px] mt-10">Browse Expert in India →</a>
+            </div>
+            <div class="overflow-hidden">
+                <img class="h-[100%]  lg:w-[100%]" src="assets/man.png" alt="">
+            </div>
+        </div>
+    </div>
+<!-- section-5 -->
+
+<div class="flex flex-col  px-32">
+    <div class="py-14">
+        <h1 class="text-[34px] ">Empowering independent business owners everywhere</h1>
+        <p class="text-[24px]  md:w-[620px] xl:w-[70%] pt-8 mb-8">Millions of businesses in spa <span class="font-[600]">175 countries</span> around the world have made over <span class="font-[600]">$496 billion USD</span> in sales using Shopify.</p>
+        <a href=""  class="text-[#008060] text-[16px]" ">Learn more about Shopify →</a>
+    </div>
+    <div class="items-center" >
+        <img class="mx-auto w-[250px] sm:w-[420px] md:w-[630px] lg:w-[800px] mt-10 "  src="assets/download.png" alt="">
+    </div>
+</div>
+
+<!-- section 5 -->
+
+<div class="flex flex-col lg:flex-row px-12 lg:px-20 xl:px-24 pt-36 pb-16 ml-10">
+    <div class="">
+        <img class="w-[100%] h-[100%]" src="assets/girl.jpg" alt="">
+    </div>
+    <div class="flex flex-col bg-[#002E25] items-center px-16 xl:px-28">
+        <p class="text-white text-center text-[24px] xl:text-[30px] w-[444px] lg:w-[430px] xl:w-[444px] py-4">“Shopify was my knight in shining armor when I exhausted  every other possibility of getting my online store up and running.  It was stunningly easy to use, with more features and plug-ins  that I didn’t even know I wanted.”</p>
+        <div class="py-10">
+            <img class=" py-5" src="assets/logo-alicia-.png" alt="">
+            <span class="text-white text-lg ">Alicia | Alicia Souza</span>
+        </div>
+    </div>
+</div>
+<!-- secction 6 -->
+<div class="flex flex-wrap gap-4 md:gap-20 lg:gap-44 xl:gap-[89px]  px-32">
+    <img src="assets/lg1.png" alt="">
+    <img src="assets/lg2.png" alt="">
+    <img src="assets/lg3.png" alt="">
+    <img src="assets/lg4.webp" alt="">
+    <img src="assets/lg5.webp" alt="">
+    <img src="assets/lg6.png" alt="">
+    <img class="" src="assets/lg7.png" alt="">
+</div>
+<!-- section 7 -->
+<div class="flex flex-col lg:flex-row  py-20">
+    <div class="py-20 pl-24 bg-[#FBF7ED] pr-14">
+        <h1 class="text-[2.4rem] pb-6 font-[400]">Get the help you need, every step of the way</h1>
+        <div class="lg:grid grid-cols-2 gap-5">
+            <div class="py-8">
+                <h1 class="text-[1.2rem] font-[600]">Shopify support</h1>
+                <p class="py-3 text-[16px] text-gray-500 w-[300px]">Contact support 24/7, whether you’re troubleshooting issues or looking for business advice.</p>
+                <a href="" class="text-[#008060] text-[16px]">Contact support →</a>
+            </div>
+            <div class="py-8">
+                <h1 class="text-[1.2rem] font-[600]">Shopify App Store</h1>
+                <p class="py-3 text-[16px] text-gray-500 w-[300px]">Add features and functionality to your business with 6,000+ apps that integrate directly with Shopify.</p>
+                <a href="" class="text-[#008060] text-[16px]">Visit the Shopify App Store →</a>
+            </div>
+            <div>
+                <h1 class="text-[1.2rem] font-[600]">Shopify Experts Marketplace</h1>
+                <p class="py-3 text-[16px] text-gray-500 w-[300px]">Hire a Shopify expert to help you with everything from store setup to SEO.</p>
+                <a href="" class="text-[#008060] text-[16px] ">Explore the Shopify Experts Marketplace</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="">
+        <img class="w-[100%] h-[100%] " src="assets/man2.png" alt="">
+    </div>
+</div>
+<!-- section 8 -->
+
+<div class="flex flex-col items-center py-10">
+    <h1 class="text-[2rem] text-center pb-3">Start your business journey with Shopify</h1>
+    <p class="text-gray-500 text-[17px]  text-center pb-8">Try Shopify for free, and explore all the tools and services you need to start, run, and grow your business</p>
+    <a href="" class="py-3 px-6 pl-10  font-[600 w-[490px]] md:text-[15px] md:w-[160px] sm:w-[160px] text-white bg-[#008060] rounded hover:bg-[#004C3F] transition duration-300">Try for free</a>
+</div>
+
+<!-- footer starts here -->
+
+<footer class="bg-[#002E25] text-white px-5 lg:px-24">
+    <div class=" ">
+        <ul class="flex items-center gap-5 lg:gap-16 py-6 font-[600]">
+            <li class="cursor-pointer">About</li>
+            <li class="cursor-pointer">Careers</li>
+            <li class="cursor-pointer">Press and Media</li>
+            <li class="cursor-pointer">Shopify Plus</li>
+            <li class="cursor-pointer">Sitemap</li>
+        </ul>
+    </div>
+    <hr>
+    <div class="flex justify-between py-5">
+                <div class="flex flex-wrap lg:flex-nowrap">
+                    <div class="flex flex-col lg:w-fit gap-3">
+                        <h1 class="font-[600]">Online</h1>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Sell online</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Features</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Examples</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Website builder</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Online retail</a>
+                    </div>
+                    <div class="flex flex-col lg:w-fit gap-3"><br>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Ecommerce website</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Domain names</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Themes</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Shopping cart</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Ecommerce hosting</a>
+                    </div>
+                    <div class="flex flex-col lg:w-fit gap-3"><br>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href=""> Mobile commerce</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Ecommerce software</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Online store builder</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Dropshipping Business </a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Store themes </a>
+                    </div>
+                </div>    
+                <div class="flex flex-wrap md:flex-nowrap gap-5">    
+                    <div class="flex flex-col gap-3">
+                        <h1 class="font-[600]">POINT OF SALE</h1>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Point of sale</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Features</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h1 class="font-[600]">SUPPORT</h1>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">24/7 support</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Shopify Help Center</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Shopify Community</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Api documentation</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Free tools</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Free stock photos</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Website for sale</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Logo Maker</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Business name genrator</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Research</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Legal</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h1 class="font-[600]">SHOPIFY</h1>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Contact</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Partner program</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Affilate program</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">App developers</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Investor</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Blog topics</a>
+                        <a class="text-gray-400 w-[150px] lg:w-[200px] " href="">Community Events</a>
+                    </div>
+                </div>
+    </div>
+    <hr>
+    <div class="flex flex-col lg:flex-row items-center gap-5 justify-between py-10">
+        <div class="flex gap-2 md:gap-8 xl:gap-8 ">
+            <img class="w-[25px] bg-white p-1 rounded-xl invert-[10%] " src="assets/fb.png" alt="">
+            <img class="w-[25px] bg-white p-1 rounded-xl invert-[10%] " src="assets/twitter.png" alt="">
+            <img class="w-[25px] bg-white p-1 rounded-xl invert-[10%] " src="assets/square-youtube-brands.svg" alt="">
+            <img class="w-[25px] bg-white p-1 rounded-xl invert-[10%] " src="assets/insta.png" alt="">
+            <img class="w-[25px] bg-white p-1 rounded-xl invert-[10%] " src="assets/link.png" alt="">
+            <img class="w-[25px] bg-white p-1 rounded-xl invert-[10%] " src="assets/pint.png" alt="">
+        </div>
+        <div class="pr-5 space-x-3 flex">
+            <a href="">Terms of Services</a>
+            <a href="">Privacy Policy</a>
+        <span class="flex "> <img class="invert-[100%] w-[15px] h-[15px] my-auto mr-1" src="assets/world.png" alt="">
+            India
+            <img class="w-[13px] h-[8px] my-auto" src="assets/drop.png" alt=""></span>
+        </div>
+    </div>
+</footer>
+
+
+
+
+</body>
+</html>
